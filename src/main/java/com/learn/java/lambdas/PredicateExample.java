@@ -7,6 +7,7 @@ public class PredicateExample {
     static Predicate<Integer> p1 = i -> i%2==0;
     static Predicate<Integer> p2 = i -> i%5==0;
 
+
     public static void main(String[] args) {
 
         //Predicate has one abstract method test that accepts one argument and returns a boolean
