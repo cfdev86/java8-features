@@ -2,6 +2,8 @@ package com.learn.java.streams;
 
 import com.learn.java.data.Student;
 import com.learn.java.data.StudentDataBase;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,7 +38,7 @@ public class StreamsMapExample {
 
         System.out.println("Count of distinct activities: "+count);
 
-        List<String> sortedActivities = StudentDataBase.getAllStudents()
+        List<String> sortedActivities1 = StudentDataBase.getAllStudents()
                 .stream()
                 .map(Student::getActivities)
                 .flatMap(List::stream)
@@ -44,7 +46,21 @@ public class StreamsMapExample {
                 .sorted() //sorts the stream in alphabetical order
                 .collect(Collectors.toList());
 
-        System.out.println("Sorted activities: "+sortedActivities);
+        System.out.println("Sorted activities: "+sortedActivities1);
+
+        List<Student> sortedActivities2 = StudentDataBase.getAllStudents()
+                .stream()
+                .sorted(Comparator.comparing(Student::getName)) //sort students by name in ascending order, ???
+                .collect(Collectors.toList());
+
+        System.out.println("Sorted students: "+sortedActivities2);
+
+        List<Student> sortedActivities3 = StudentDataBase.getAllStudents()
+                .stream()
+                .sorted(Comparator.comparing(Student::getName).reversed()) //sort students by name in descending order, ???
+                .collect(Collectors.toList());
+
+        System.out.println("Sorted students: "+sortedActivities3);
 
     }
 }
